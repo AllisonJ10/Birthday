@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Invitación de Cumpleaños</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#0b0f1a" />
+</head>
+<body>
+  <main class="layout">
+    <section class="video-wrap">
+      <video
+        id="videoHero"
+        class="video-fit"
+        poster="assets/poster.jpg"
+        playsinline
+        loop
+        controls
+        preload="metadata"
+      >
+        <source src="assets/video.mp4" type="video/mp4" />
+        Tu navegador no soporta video HTML5.
+      </video>
+    </section>
+
+    <nav class="cta-bar">
+      <a
+        class="btn btn-whatsapp"
+        href="https://wa.me/51979463448?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os.%20%F0%9F%8E%89"
+        target="_blank" rel="noopener"
+      >
+        Confirmar asistencia
+      </a>
+      <a
+        class="btn btn-maps"
+        href="https://maps.app.goo.gl/EriWpGguiwsJG2cBA"
+        target="_blank" rel="noopener"
+      >
+        Ver ubicación
+      </a>
+    </nav>
+
+    <!-- Botón que inicia el video con sonido en móviles -->
+    <button id="playButton" class="btn btn-play">▶ Reproducir con sonido</button>
+  </main>
+
+  <script>
+    // Script para permitir sonido en móviles
+    const video = document.getElementById('videoHero');
+    const playButton = document.getElementById('playButton');
+
+    // Oculta el botón en PC (autoplay con sonido permitido)
+    if (!/Mobi|Android/i.test(navigator.userAgent)) {
+      video.autoplay = true;
+      video.play().catch(() => {});
+      playButton.style.display = 'none';
+    }
+
+    // En móviles: usuario debe tocar para activar el sonido
+    playButton.addEventListener('click', () => {
+      video.muted = false;
+      video.play();
+      playButton.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
